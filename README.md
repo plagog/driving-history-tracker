@@ -1,19 +1,13 @@
 # Driving History Tracker
-
 ##### Language: Python 3.8.10
-
 ##### Usage: "python3 index.py input.txt"
 
-### Prompt
+### Prompt"
 
 #### Let's write some code to track driving history for people.
 
-####
-
 #### The code will process an input file. You can either choose to accept the input via stdin (e.g. if you're using Ruby cat input.txt | ruby yourcode.rb), or as a file name given on the command line (e.g. ruby yourcode.rb input.txt). You can use any programming language that you want. Please choose a language that allows you to best demonstrate your programming ability.
-
 #### Each line in the input file will start with a command. There are two possible commands.
-
 #### The first command is Driver, which will register a new Driver in the app. Example:
 
 #### Driver Dan
@@ -23,44 +17,28 @@
 #### Trip Dan 07:15 07:45 17.3
 
 #### Discard any trips that average a speed of less than 5 mph or greater than 100 mph.
-
 #### Generate a report containing each driver with total miles driven and average speed. Sort the output by most miles driven to least. Round miles and miles per hour to the nearest integer.
 
 #### Example input:
-
-##### Driver Dan
-
-##### Driver Lauren
-
-##### Driver Kumi
-
-##### Trip Dan 07:15 07:45 17.3
-
-##### Trip Dan 06:12 06:32 21.8
-
-##### Trip Lauren 12:01 13:16 42.0
+Driver Dan
+Driver Lauren
+Driver Kumi
+Trip Dan 07:15 07:45 17.3
+Trip Dan 06:12 06:32 21.8
+Trip Lauren 12:01 13:16 42.0
 
 ##### Expected output:
+Lauren: 42 miles @ 34 mph
+Dan: 39 miles @ 47 mph
+Kumi: 0 miles
 
-##### Lauren: 42 miles @ 34 mph
+### Documentation"
 
-##### Dan: 39 miles @ 47 mph
-
-##### Kumi: 0 miles
-
-### Documentation
-
-#### This documentation provides insight to the reasoning behind the choices I made when
-
-#### developing the algorithm for tracking and processing drivers' driving data for the purpose
-
-#### of generating reports as requested by the problem statement.
+#### This documentation provides insight to the reasoning behind the choices I made when developing the algorithm for tracking and processing drivers' driving data for the purpose of generating reports as requested by the problem statement.
 
 #### The general idea is: I read the file, line by line, and calculate the duration and average mph for each trip.
 
-#### If the average mph satisfies the [5-100] mph requirement, I proceed to calculate, store and update each drivers info using DriversData class objects for each driver and a Dictionary to store and access them.
-
-#### I then iterate through the sorted by "totalMilesDriven" key-value pairs of the DRIVERS_HISTORY_MAP dictionary to print the requested information.
+#### If the average mph satisfies the [5-100] mph requirement, I proceed to calculate, store and update each drivers info using DriversData class objects for each driver and a Dictionary to store and access them. I then iterate through the sorted by "totalMilesDriven" key-value pairs of the DRIVERS_HISTORY_MAP dictionary to print the requested information.
 
 ## A. Language seen in this document and what it refers to:
 
@@ -100,7 +78,7 @@
    vi. Calculate and cumulatively add each trip's (line's) data to the driver's dictionary entry 1. Retrieve the current data for the driver (will be an empty DriversData object on the first Trip command) 2. Store totalTripDuration and weightedAverageMPH to easy to read variables 3. calculate and store the new weightedAverageMPH based on the current trip's avgMPH and duration and total trips' duration and weightedAverageMPH 4. Update the DriversData object's attributes
 5. Sort dictionary by "totalMilesDriven" of the DriversData objects and print in the format requested.
 
-### C. Explanations:
+## C. Explanations:
 
 1. Object Modeling. For this work sample I found it helpful to create a simple model for the data stored for each driver. One of its purposes was to initially create an object with default data for each driver when they were registered by a Driver command.
    An extra minor purpose, which is neat nonetheless, is the **repr** method which allowed a very clean way of printing the final report data in the requested format.
@@ -122,7 +100,7 @@ To store and access this information I decided to use Python's built-in dictiona
    i. Since I am multiplying and dividing cumulatively on the weightedAverageMPH attribute of DriversData, I thought a good way to test the final result was to check whether the final data still satisfy the totalMiles/duration == mph formula. In a real-world scenario this could be a validation check that runs every x-amount of hours or x-amount of entries on the database but outside this segment of the code.
    e. In addition to the above, and very importantly, I tested with various combinations of valid and invalid inputs in the input2.txt file and also tested with a bigger input file as seen with the input.txt file.
 
-### D. Observations:
+## D. Observations:
 
 1. A lot of the variables used are redundant and could be avoided. However, with interest in code readability, I chose to use plenty of them.
 2. With interest in saving space, I chose not to store trip information, rather calculate and store the minimum required data to satisfy requirements. I would have done that by maintaining an array which would hav been an attribute of the DriversData class. Initially, I started storing the trip's data and it is something that's probably useful in a real-world scenario. However, since the goal of this work sample was to print each driver's total mileage and average mph, I decided not to store that information.
@@ -133,7 +111,7 @@ To store and access this information I decided to use Python's built-in dictiona
 7. Even though the problem statement prompt defines the format of the input lines (for example the Driver and Trip commands, startTime and stopTime specifications), I added multiple checks to make sure that invalid lines in the input file would be skipped with interest in not skewing the final data (ex. non-positive miles, 0 trip durations).
 8. Since array.split() creates an array by splitting the original string by checking for whitespace characters, each element (string) of the new array will have at least one character. Because of that, I don't have to check for empty strings. (For example, we will always have a driver's name with at least one character)
 
-### E. APIs
+## E. API
 
 #### I decided to make a public API with an API key valid for 30 days starting March 29th 2022. If the reader is interested in trying them out, below are the specifications.
 
